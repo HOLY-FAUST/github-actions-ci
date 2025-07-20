@@ -6,11 +6,11 @@ on:
       - main
 
 jobs:
-  run-script:
+  print:
     runs-on: ubuntu-latest
     steps:
-      - name: 📥 Checkout code
-        uses: actions/checkout@v3
+      - name: Print to console
+        run: echo Hello GH Actions!
 
       - name: 🐍 Setup Python
         uses: actions/setup-python@v4
@@ -19,4 +19,4 @@ jobs:
 
       - name: 🚀 Run Python script
         run: |
-          python hello.py
+          python main.py
