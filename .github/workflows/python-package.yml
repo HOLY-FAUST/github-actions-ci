@@ -1,13 +1,31 @@
-name: Run Python Script
+name: Build and Docker Image
 
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
-  print:
+  build-docker:
     runs-on: ubuntu-latest
     steps:
-      - name: Print to console
-        run: echo Hello GH Actions!
+      - name: Checkout code
+        uses: actions/checkout@v3
+        
+      - name: Setup Docker
+        uses: actions/setup-qemu@v3
+      - uses: actions/setup-buildx@v2
+
+      - name: Build Docker Image
+        run: |
+          docker build -t my-python-hello .
+
+      - name: Run Docker Image
+        run: |
+          docker run --rm my-python-hello
+          
+        
+      
+      
+        
+      
