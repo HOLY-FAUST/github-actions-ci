@@ -12,18 +12,19 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Install Docker
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y docker.io
+      - name: 🐳 Docker Buildx
+        uses: docker/setup-buildx@v2
 
-      - name: Build Docker image
-        run: |
-          docker build -t my-hello-world .
+      - name: 🐳 Docker Login
+        if: ${{ secrets.DOCKER_USERNAME }}
+        run: echo "${{ secrets.emilemil1155+-+ }}" | docker login -u "${{ secrets.faustdocker }}" --password-stdin
 
-      - name: Run Docker container
-        run: |
-          docker run --rm my-hello-world
+      - name: 🧪 Build and Push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: ${{ secrets.faustdocker }}/my-hello-world:latest
           
         
       
