@@ -12,11 +12,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Setup QEMU
-        uses: docker/setup-qemu@v2
-
-      - name: Setup Docker Buildx
-        uses: docker/setup-buildx@v3
+      - name: Install Docker
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y docker.io
 
       - name: Build Docker image
         run: |
