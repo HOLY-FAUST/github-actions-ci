@@ -9,22 +9,13 @@ jobs:
   build-docker:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: 📥 Checkout code
         uses: actions/checkout@v3
 
-      - name: 🐳 Docker Buildx
-        uses: docker/setup-buildx@v2
-
-      - name: 🐳 Docker Login
-        if: ${{ secrets.DOCKER_USERNAME }}
-        run: echo "${{ secrets.emilemil1155+-+ }}" | docker login -u "${{ secrets.faustdocker }}" --password-stdin
-
-      - name: 🧪 Build and Push
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          push: true
-          tags: ${{ secrets.faustdocker }}/my-hello-world:latest
+      - name: 🐳 Use Docker
+        run: |
+          docker build -t my-hello-world .
+          docker run --rm my-hello-world
           
         
       
