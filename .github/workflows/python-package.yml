@@ -20,6 +20,10 @@ jobs:
         run: |
           docker build -t my-hello-world .
           docker run --rm my-hello-world
+
+      - name: Docker login
+        run: docker login
+        
           
         
       
