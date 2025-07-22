@@ -13,13 +13,21 @@ jobs:
       - name: 📥 Checkout code
         uses: actions/checkout@v3
 
+  terminal:
+    runs-on: ubuntu-latest
+
+    steps:
       - name: Terminalich check
         run: ls -la
+        
+  docker:
+    runs-on: ubuntu-latest
 
-      - name: 🐳 Use Docker
+    steps:
+      - name: use docker
         run: |
           docker build -t my-hello-friend .
-          ddocker push daniil14/my-hello-friend:latest
+          docker push githubactions/my-hello-friend:latest
         
           
         
